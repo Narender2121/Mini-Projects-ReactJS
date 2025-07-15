@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import "./App.css";
+const App = () => {
+  //syntax
+  //const[currentState,updatedFunction]=useState(initialState)
+  const [input, setInput] = useState("");
+  const[submitted,setSubmitted]=useState(false)
+  const[error,setError]=useState('')
+
+  const handleSubmit=(e)=>{
+      e.preventDefault () 
+    if(input.trim()!==''){
+      setSubmitted(true)
+      setError('')
+    }else{
+      setSubmitted(false)
+      setError('Please enter input field!!')
+    }
+  }
+
+  const handleChange=(e)=>{
+     const inputValue=e.target.value;
+    const regex=/^[A-Za-z\s]+$/;
+   
+    if(regex.test(inputValue)){
+      setInput(inputValue)
+      setError('')
+    }else{
+      setError('Please enter valid input filed')
+    }
+  }
+  return (
+    <div className="App">
+      <h1>Form handling by ReactJs useState hook </h1>
+      <form onSubmit={handleSubmit}>
+        <input type="text"
+          placeholder="Enter your Name"
+          value={input}
+          onChange={handleChange}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {/*if error occurs*/}
+      {error && <p style={{color:'red'}}>{error}</p>}
+      {/*if error not occur */}
+      {submitted && <h1>Form submitedd successfully!!</h1>}
+    </div>
+  );
+};
+export default App;
