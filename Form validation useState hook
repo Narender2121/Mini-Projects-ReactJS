@@ -6,7 +6,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const[submitted,setSubmitted]=useState(false)
   const[error,setError]=useState('')
-
+//Submit handler
   const handleSubmit=(e)=>{
       e.preventDefault () 
     if(input.trim()!==''){
@@ -17,7 +17,7 @@ const App = () => {
       setError('Please enter input field!!')
     }
   }
-
+//Regex: only letters and spaces
   const handleChange=(e)=>{
      const inputValue=e.target.value;
     const regex=/^[A-Za-z\s]+$/;
